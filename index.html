@@ -3,45 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 쥬얼쥬얼 콕콕콕  🎨 </title>
-    <script src="https://cdn.jsdelivr.net/gh/buzzfeed/libgif-js@master/libgif.js"></script>
+    <title>쥬얼쥬얼 콕콕콕 🎨</title>
     <style>
-        /* ⭐ 마법 1: 노랑/파스텔노랑/베이지/갈색 무드로 전면 리모델링 */
+        /* 기본 베이지 무드 유지 */
         :root {
-            --bg-color: #FDFBF7; /* 파스텔 크림 아이보리 */
-            --pompom-yellow: #FCEFB4; /* 포근한 파스텔 노랑 */
-            --warm-beige: #F5EBE6; /* 밀크티 베이지 */
-            --point-orange-brown: #E5A93C; /* 부드러운 꿀 노랑 (포인트 컬러) */
-            --pompom-brown: #7A5842; /* 소프트 브라운 테두리 및 텍스트 */
-            --btn-save-brown: #9E7A60; /* 저장 버튼용 딥 베이지 */
+            --bg-color: #FDFBF7; 
+            --pompom-yellow: #FCEFB4; 
+            --warm-beige: #F5EBE6; 
+            --point-orange-brown: #E5A93C; 
+            --pompom-brown: #7A5842; 
+            --btn-save-brown: #9E7A60; 
+            --celebrate-blue: #3498DB; 
         }
 
-        body {
-            font-family: 'Malgun Gothic', sans-serif;
-            background: var(--bg-color); 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            overflow: hidden;
-            height: 100vh;
-            user-select: none;
-            color: var(--pompom-brown);
-        }
+        body { font-family: 'Malgun Gothic', sans-serif; background: var(--bg-color); display: flex; flex-direction: column; align-items: center; margin: 0; overflow: hidden; height: 100vh; user-select: none; color: var(--pompom-brown); }
         
-        /* 중앙 세팅 화면 */
-        #uploadSection {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 100;
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(122, 88, 66, 0.12); /* 브라운 그림자 */
-            width: 420px; box-sizing: border-box; max-height: 90vh; overflow-y: auto;
-            border: 3px solid var(--pompom-brown);
-        }
+        #uploadSection { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 100; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(122, 88, 66, 0.12); width: 420px; box-sizing: border-box; max-height: 90vh; overflow-y: auto; border: 3px solid var(--pompom-brown); }
         #uploadSection.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, -60%); transition: all 0.5s; }
         
         h1 { color: var(--point-orange-brown); font-size: 24px; margin: 0 0 10px 0; }
@@ -51,64 +28,22 @@
         .setting-row { margin-bottom: 12px; display: flex; flex-direction: column; }
         .setting-row label { font-weight: bold; margin-bottom: 5px; color: var(--pompom-brown); }
         
-        /* 슬라이더 커스텀 */
-        .setting-row input[type="range"]::-webkit-slider-thumb { background: var(--pompom-brown); }
-        .setting-row input[type="range"]::-moz-range-thumb { background: var(--pompom-brown); }
-
-        #infoPreview { font-weight: bold; color: var(--pompom-brown); margin-top: 5px; text-align: center; display: block;}
-
-        #uploadLabel {
-            background-color: var(--point-orange-brown);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(229, 169, 60, 0.3);
-            display: inline-block;
-            width: 80%; margin-bottom: 15px;
-        }
+        #uploadLabel { background-color: var(--point-orange-brown); color: white; padding: 12px 25px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(229, 169, 60, 0.3); display: inline-block; width: 80%; margin-bottom: 15px; }
         #uploadInput { display: none; }
         
-        /* 실시간 미리보기 구역 */
         #previewZone { display: none; margin-top: 15px; border-top: 2px dashed var(--point-orange-brown); padding-top: 15px; }
         .preview-canvas-wrapper { width: 200px; margin: 0 auto 12px; border: 2px solid var(--pompom-brown); border-radius: 10px; overflow: hidden; background: #fff; display: flex; justify-content: center; align-items: center; }
         #previewCanvas { width: 100%; height: auto; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
         #previewPalette { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-bottom: 15px; }
         .preview-dot { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 1px 3px rgba(255,255,255,0.5), 0 1px 2px rgba(0,0,0,0.15); }
         
-        #startBtn {
-            background-color: var(--pompom-brown);
-            color: white;
-            padding: 11px 25px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 5px 15px rgba(122, 88, 66, 0.3);
-            width: 85%;
-        }
+        #startBtn { background-color: var(--pompom-brown); color: white; padding: 11px 25px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; border: none; box-shadow: 0 5px 15px rgba(122, 88, 66, 0.3); width: 85%; }
 
-        /* 게임 구역 */
         #gameArea { position: relative; width: 100%; height: calc(100vh - 140px); overflow: hidden; cursor: default; display: none; }
         #canvasContainer { position: absolute; transform-origin: 0 0; }
         #pixelCanvas { box-shadow: 0 10px 25px rgba(122, 88, 66, 0.08); border-radius: 8px; background: white; border: 2px solid var(--pompom-brown); }
 
-        /* 컨트롤 스코어보드 */
-        #playInfo {
-            position: fixed; bottom: 115px; left: 50%; transform: translateX(-50%);
-            background: white; padding: 8px 25px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: var(--pompom-brown);
-            box-shadow: 0 2px 8px rgba(122, 88, 66, 0.1);
-            display: flex; align-items: center; gap: 15px;
-            z-index: 15;
-            display: none;
-            border: 2px solid var(--pompom-yellow);
-        }
+        #playInfo { position: fixed; bottom: 115px; left: 50%; transform: translateX(-50%); background: white; padding: 8px 25px; border-radius: 20px; font-size: 14px; color: var(--pompom-brown); box-shadow: 0 2px 8px rgba(122, 88, 66, 0.1); display: flex; align-items: center; gap: 15px; z-index: 15; display: none; white-space: nowrap; border: 2px solid var(--pompom-yellow); }
         #playInfo b { color: var(--point-orange-brown); }
         
         .btn-group { display: flex; gap: 6px; margin-left: 10px; }
@@ -117,17 +52,7 @@
         .btn-reset { background: var(--pompom-brown); opacity: 0.8; }
         .btn-reset:hover { opacity: 1; }
 
-        /* 보석 트레이 */
-        #jewelTray {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 100px;
-            background: linear-gradient(0deg, var(--pompom-yellow) 0%, var(--bg-color) 100%); /* 차분한 파스텔 옐로우 그라데이션 */
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-            box-shadow: 0 -5px 20px rgba(122, 88, 66, 0.08);
-            display: flex; align-items: center; padding: 0 20px; box-sizing: border-box; z-index: 10;
-            overflow-x: auto; display: none;
-            border-top: 3px solid var(--pompom-brown);
-        }
+        #jewelTray { position: fixed; bottom: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(0deg, var(--pompom-yellow) 0%, var(--bg-color) 100%); border-top-left-radius: 25px; border-top-right-radius: 25px; box-shadow: 0 -5px 20px rgba(122, 88, 66, 0.08); display: flex; align-items: center; padding: 0 20px; box-sizing: border-box; z-index: 10; overflow-x: auto; display: none; border-top: 3px solid var(--pompom-brown); }
         .tray-slot { width: 62px; height: 62px; background: rgba(255,255,255,0.8); border-radius: 14px; margin: 0 6px; border: 2px solid var(--warm-beige); flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .tray-slot.selected { border: 3px solid var(--pompom-brown); background: #ffffff; box-shadow: 0 0 12px rgba(122, 88, 66, 0.2); transform: scale(1.1); z-index: 2; }
         .tray-slot.completed { opacity: 0.2; filter: grayscale(90%); }
@@ -135,24 +60,49 @@
         .jewel { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.6); }
         .slot-count { position: absolute; bottom: 2px; right: 4px; font-size: 10px; font-weight: bold; color: white; background: var(--pompom-brown); padding: 1px 4px; border-radius: 6px; }
 
-        /* 마우스 졸졸이 쥬얼 */
         #followerJewel { position: fixed; width: 28px; height: 28px; border-radius: 50%; pointer-events: none; z-index: 9999; display: none; box-shadow: 3px 5px 10px rgba(0,0,0,0.2); transform: translate(15px, 15px); }
 
-        /* 크레딧 문구 */
-        #mealppyCredit {
-            position: fixed; bottom: 105px; right: 15px;
-            font-size: 11px; color: var(--pompom-brown); opacity: 0.6;
-            z-index: 20;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            pointer-events: none;
+        #mealppyCredit { position: fixed; bottom: 105px; right: 15px; font-size: 11px; color: var(--pompom-brown); opacity: 0.6; z-index: 20; font-family: Arial, sans-serif; font-weight: bold; pointer-events: none; }
+
+        @keyframes firework {
+            0% { transform: scale(0); opacity: 1; }
+            80% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.1); opacity: 0; }
         }
+        .celebration-text {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 70px; font-weight: bold; color: var(--celebrate-blue);
+            text-shadow: 4px 4px 15px rgba(52, 152, 219, 0.6), -4px -4px 15px white;
+            z-index: 200; display: none; animation: firework 2s ease-out;
+            white-space: nowrap;
+        }
+        .confetti {
+            position: absolute; width: 10px; height: 10px; border-radius: 50%;
+            z-index: 199; display: none;
+        }
+
+        #resetModal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(122, 88, 66, 0.4); z-index: 500;
+            display: none; justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: var(--warm-beige); padding: 25px; border-radius: 20px;
+            text-align: center; border: 3px solid var(--pompom-brown);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 320px;
+        }
+        .modal-content p { color: var(--pompom-brown); font-weight: bold; margin-bottom: 20px; }
+        .modal-btns { display: flex; gap: 10px; justify-content: center; }
+        .modal-btn { color: white; border: none; padding: 10px 20px; border-radius: 15px; font-size: 14px; cursor: pointer; font-weight: bold; width: 45%; }
+        .btn-confirm { background: var(--pompom-brown); }
+        .btn-cancel { background: #dc3545; }
+
     </style>
 </head>
 <body>
 
     <div id="uploadSection">
-        <h1> 🎨 쥬얼쥬얼 콕콕 🎨 </h1>
+        <h1>🎨 쥬얼쥬얼 콕콕 🎨</h1>
         <p class="sub-title">좋아하는 이미지로 사이버 보석십자수를 콕콕</p>
         
         <label id="uploadLabel" for="uploadInput">1. 이미지 선택</label>
@@ -171,7 +121,7 @@
                 <span id="infoPreview">가로 35칸 / 보석 12종류</span>
             </div>
 
-            <h3 style="font-size:14px; color:var(--pompom-brown); margin: 5px 0;">✨ 밑그림 미리보기</h3>
+            <h3 style="font-size:14px; color:var(--point-orange-brown); margin: 5px 0;">✨ 밑그림 미리보기</h3>
             <div class="preview-canvas-wrapper">
                 <canvas id="previewCanvas"></canvas>
             </div>
@@ -185,6 +135,8 @@
         <div id="canvasContainer">
             <canvas id="pixelCanvas"></canvas>
         </div>
+
+        <div id="confettiContainer"></div>
     </div>
 
     <div id="playInfo">
@@ -194,14 +146,23 @@
         
         <div class="btn-group">
             <button class="action-btn btn-save" onclick="saveAsImage()">이미지로 저장 📸</button>
-            <button class="action-btn btn-reset" onclick="giveUpAndGoBack()">다른 그림 🔄</button>
+            <button class="action-btn btn-reset" onclick="showResetModal()">다른 그림 🔄</button>
         </div>
     </div>
 
     <div id="jewelTray"></div>
     <div id="followerJewel"></div>
-    
     <div id="mealppyCredit">©mealppy</div>
+
+    <div id="resetModal">
+        <div class="modal-content">
+            <p>경고! 지금 완성 중인 그림이 날아가요! 다른 그림을 불러올까요?</p>
+            <div class="modal-btns">
+                <button class="modal-btn btn-confirm" onclick="confirmReset()">웅!</button>
+                <button class="modal-btn btn-cancel" onclick="closeResetModal()">아니!</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const uploadInput = document.getElementById('uploadInput');
@@ -224,6 +185,9 @@
         const colorSlider = document.getElementById('colorSlider');
         const infoPreview = document.getElementById('infoPreview');
         const followerJewel = document.getElementById('followerJewel');
+        const resetModal = document.getElementById('resetModal');
+        const celebrationText = document.getElementById('celebrationText');
+        const confettiContainer = document.getElementById('confettiContainer');
 
         let img = new Image();
         let scale = 1, panning = false;
@@ -233,6 +197,7 @@
         let selectedColor = null; 
         let totalNeeded = 0, currentPlaced = 0;
         let blinkAlpha = 0.6, blinkTime = 0;
+        let celebrateTimer;
 
         sizeSlider.oninput = () => { updatePreviewText(); generatePreview(); };
         colorSlider.oninput = () => { updatePreviewText(); generatePreview(); };
@@ -256,16 +221,9 @@
 
         uploadInput.addEventListener('change', (e) => {
             const file = e.target.files[0]; if (!file) return;
-            if (file.type === 'image/gif') {
-                const tempImg = document.createElement('img');
-                tempImg.src = URL.createObjectURL(file);
-                const rub = new SuperGif({ gif: tempImg } );
-                rub.load(() => { img.src = rub.get_canvas().toDataURL(); });
-            } else {
-                const reader = new FileReader();
-                reader.onload = (ev) => img.src = ev.target.result;
-                reader.readAsDataURL(file);
-            }
+            const reader = new FileReader();
+            reader.onload = (ev) => img.src = ev.target.result;
+            reader.readAsDataURL(file);
         });
 
         img.onload = () => {
@@ -366,7 +324,7 @@
 
         startBtn.onclick = () => {
             uploadSection.classList.add('hidden'); gameArea.style.display = 'block'; tray.style.display = 'flex'; playInfo.style.display = 'flex';
-            
+            resetCelebration();
             const maxW = window.innerWidth * 0.85;
             let w = img.width, h = img.height;
             if (w > maxW) { h = (maxW / w) * h; w = maxW; }
@@ -448,14 +406,14 @@
                     grd.addColorStop(0, "white"); grd.addColorStop(1, cell.targetColor);
                     ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2*Math.PI); ctx.fill();
                     
-                    ctx.strokeStyle = "rgba(0,0,0,0.15)"; ctx.lineWidth = 0.5;
+                    ctx.strokeStyle = "rgba(0,0,0,0.18)"; ctx.lineWidth = 0.5;
                     ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2*Math.PI); ctx.stroke();
                 } else {
                     ctx.fillStyle = cell.targetColor;
                     if (cell.targetColor === selectedColor) {
                         ctx.globalAlpha = blinkAlpha;
                         ctx.fillRect(x, y, pixelSize, pixelSize);
-                        ctx.strokeStyle = "rgba(255,255,255,0.6)"; ctx.lineWidth = 1;
+                        ctx.strokeStyle = "rgba(255,255,255,0.7)"; ctx.lineWidth = 1;
                         ctx.strokeRect(x+0.5, y+0.5, pixelSize-1, pixelSize-1);
                     } else {
                         ctx.globalAlpha = 0.15; 
@@ -465,9 +423,13 @@
                 }
             });
 
-            ctx.strokeStyle = "rgba(0,0,0,0.04)"; ctx.lineWidth = 0.5;
-            for (let x = 0; x <= canvas.width; x += pixelSize) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
-            for (let y = 0; y <= canvas.height; y += pixelSize) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+            ctx.strokeStyle = "rgba(0,0,0,0.05)"; ctx.lineWidth = 0.5;
+            for (let x = 0; x <= canvas.width; x += pixelSize) { 
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); 
+            }
+            for (let y = 0; y <= canvas.height; y += pixelSize) { 
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); 
+            }
         }
 
         function createTray() {
@@ -492,6 +454,8 @@
                 slot.appendChild(countBadge);
 
                 slot.onclick = () => {
+                    if (leftCount === 0) return; 
+
                     document.querySelectorAll('.tray-slot').forEach(s => s.classList.remove('selected'));
                     changeSelectedColor(hex);
                     slot.classList.add('selected');
@@ -505,61 +469,103 @@
             const leftTotal = boardData.filter(c => c.targetColor && !c.isFilled).length;
             totalText.innerText = leftTotal;
             matchedText.innerText = currentPlaced;
-            organizedText.innerText = totalNeeded > 0 ? `${Math.floor((currentPlaced / totalNeeded) * 100)}%` : "0%";
-            if (leftTotal === 0) changeSelectedColor(null);
+            const percent = totalNeeded > 0 ? Math.floor((currentPlaced / totalNeeded) * 100) : 0;
+            organizedText.innerText = `${percent}%`;
+            
+            if (leftTotal === 0) {
+                changeSelectedColor(null);
+                startCelebration(); 
+            }
         }
 
-        function fillConnectedArea(startIndex, targetColor) {
+        /* 💡 대각선까지 확장된 대망의 8방향 연쇄 채우기 시스템! */
+        function fillConnectedArea(startIndex, color) {
             const tw = parseInt(sizeSlider.value);
-            const th = Math.floor(boardData.length / tw);
-            const queue = [startIndex];
-            let placedCount = 0;
-
-            const visited = new Set();
+            const th = boardData.length / tw;
+            let filledCount = 0;
+            let queue = [startIndex];
+            let visited = new Set();
             visited.add(startIndex);
 
-            while (queue.length > 0) {
-                const curr = queue.shift();
-                
-                if (!boardData[curr].isFilled && boardData[curr].targetColor === targetColor) {
+            while(queue.length > 0) {
+                let curr = queue.shift();
+                if (boardData[curr] && boardData[curr].targetColor === color && !boardData[curr].isFilled) {
                     boardData[curr].isFilled = true;
-                    placedCount++;
-                }
+                    filledCount++;
 
-                const cx = curr % tw;
-                const cy = Math.floor(curr / tw);
+                    let cx = curr % tw;
+                    let cy = Math.floor(curr / tw);
 
-                const neighbors = [
-                    { x: cx, y: cy - 1 }, { x: cx, y: cy + 1 }, { x: cx - 1, y: cy }, { x: cx + 1, y: cy },
-                    { x: cx - 1, y: cy - 1 }, { x: cx + 1, y: cy - 1 }, { x: cx - 1, y: cy + 1 }, { x: cx + 1, y: cy + 1 }
-                ];
+                    // 8방향 좌표 계산용 루프 (x축 -1~1, y축 -1~1)
+                    for (let dy = -1; dy <= 1; dy++) {
+                        for (let dx = -1; dx <= 1; dx++) {
+                            if (dx === 0 && dy === 0) continue; // 자기 자신 제외
 
-                neighbors.forEach(n => {
-                    if (n.x >= 0 && n.x < tw && n.y >= 0 && n.y < th) {
-                        const nIndex = n.y * tw + n.x;
-                        if (!visited.has(nIndex) && boardData[nIndex] && boardData[nIndex].targetColor === targetColor && !boardData[nIndex].isFilled) {
-                            visited.add(nIndex);
-                            queue.push(nIndex);
+                            let nx = cx + dx;
+                            let ny = cy + dy;
+
+                            if (nx >= 0 && nx < tw && ny >= 0 && ny < th) {
+                                let n = ny * tw + nx;
+                                if (!visited.has(n)) {
+                                    visited.add(n);
+                                    if (boardData[n] && boardData[n].targetColor === color && !boardData[n].isFilled) {
+                                        queue.push(n);
+                                    }
+                                }
+                            }
                         }
                     }
-                });
+                }
             }
+            return filledCount;
+        }
 
-            return placedCount;
+        function startCelebration() {
+            confettiContainer.innerHTML = '';
+            
+            // 🎉 빵빠레 색종이 부활!
+            for (let i = 0; i < 70; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = `${Math.random() * -10}vh`;
+
+                const colors = ['#FCEFB4', '#FFE5D9', '#E5A93C', '#7A5842', '#3498DB', '#FDFBF7'];
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s ease-out forwards`;
+                confetti.style.display = 'block';
+                confettiContainer.appendChild(confetti);
+            }
+            clearTimeout(celebrateTimer);
+        }
+
+        function resetCelebration() {
+            confettiContainer.innerHTML = '';
+        }
+
+        document.styleSheets[0].insertRule(`
+            @keyframes confetti-fall {
+                0% { transform: translateY(0) rotate(0deg); }
+                100% { transform: translateY(120vh) rotate(${Math.random() * 360}deg); opacity: 0; }
+            }
+        `);
+
+        function showResetModal() { resetModal.style.display = 'flex'; }
+        function closeResetModal() { resetModal.style.display = 'none'; }
+        
+        function confirmReset() { 
+            resetModal.style.display = 'none';
+            giveUpAndGoBack(); 
         }
 
         function giveUpAndGoBack() {
             gameArea.style.display = 'none'; tray.style.display = 'none'; playInfo.style.display = 'none';
+            resetCelebration();
             changeSelectedColor(null); uploadInput.value = ""; uploadSection.classList.remove('hidden');
         }
 
-        function saveAsImage() {
-            const link = document.createElement('a');
-            link.download = 'my_jewel_coloring_by_mealppy.png'; 
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-
+        /* 🛠️ 클릭 시 보석 조작과 화면 드래그 이동 간의 꼬임 방지 대수술 완료! */
         gameArea.onmousedown = (e) => {
             if (e.button === 0) { 
                 const rect = canvas.getBoundingClientRect();
@@ -583,55 +589,46 @@
                             
                             updateInfo(); createTray(); drawGame();
                         }
+                        // ✨ 보석 박기에 성공했다면 드래그 모드(panning)가 켜지지 않게 바로 리턴 처리해 버려요!
                         return; 
                     }
                 }
             }
+            // 보석을 안 누르고 바깥 빈 공간을 누를 때만 화면이 이동합니다!
             panning = true; startX = e.clientX - pointX; startY = e.clientY - pointY;
         };
 
-        gameArea.onmousemove = (e) => { 
-            if (!panning) return; 
-            let nextX = e.clientX - startX; 
-            let nextY = e.clientY - startY; 
-
-            const cWidth = canvas.width * scale;
-            const cHeight = canvas.height * scale;
-            const areaW = gameArea.offsetWidth;
-            const areaH = gameArea.offsetHeight;
-
-            const padW = cWidth * 0.8;
-            const padH = cHeight * 0.8;
-
-            if (nextX > areaW - (cWidth - padW)) nextX = areaW - (cWidth - padW);
-            if (nextX < -padW) nextX = -padW;
-            if (nextY > areaH - (cHeight - padH)) nextY = areaH - (cHeight - padH);
-            if (nextY < -padH) nextY = -padH;
-
-            pointX = nextX; 
-            pointY = nextY; 
-            setTransform(); 
-        };
-        
+        gameArea.onmousemove = (e) => { if (!panning) return; pointX = e.clientX - startX; pointY = e.clientY - startY; setTransform(); };
         document.onmouseup = () => { panning = false; };
 
         function setTransform() { canvasContainer.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`; }
         
+        /* 🛠️ 마우스 포인터 중심 스크롤 확대/축소 로직 정밀 보정 */
         gameArea.onwheel = (e) => {
             e.preventDefault(); 
-            const xs = (e.clientX - pointX) / scale; 
-            const ys = (e.clientY - pointY) / scale; 
+            const rect = gameArea.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const xs = (mouseX - pointX) / scale; 
+            const ys = (mouseY - pointY) / scale; 
             const delta = -e.deltaY;
             
             if (delta > 0) scale *= 1.15; else scale /= 1.15;
-            
-            if (scale < 0.5) scale = 0.5;
-            if (scale > 8.0) scale = 8.0; 
+            if (scale < 0.4) scale = 0.4;
+            if (scale > 10.0) scale = 10.0; 
 
-            pointX = e.clientX - xs * scale; 
-            pointY = e.clientY - ys * scale; 
+            pointX = mouseX - xs * scale; 
+            pointY = mouseY - ys * scale; 
             setTransform();
         };
+
+        function saveAsImage() {
+            const link = document.createElement('a');
+            link.download = 'my_jewel_coloring_by_mealppy.png'; 
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
     </script>
 </body>
 </html>
